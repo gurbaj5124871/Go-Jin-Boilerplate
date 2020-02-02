@@ -1,4 +1,8 @@
 {
     "port": 8000,
-    "serverShutDownGraceDelayInSec": 0
+    "serverShutDownGraceDelayInSec": 0,
+    "mongo": {
+        "URI": "mongodb://localhost:27017",
+        "database": "golang"
+    }
 }

@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"go-gin-boilerplate/bootstrap"
 	"go-gin-boilerplate/config"
 	"go-gin-boilerplate/routes"
 	"log"
@@ -23,6 +24,8 @@ func main() {
 		log.Fatalf("Error while initilising environment: %s\n", err)
 		os.Exit(1)
 	}
+
+	_, mongoDisconnect := bootstrap.InitiliseMongo()
 
 	r := routes.InitiliseRoutes()
 	addr := fmt.Sprint(":", conf.Port)
@@ -58,6 +61,7 @@ func main() {
 	select {
 	case <-ctx.Done():
 		log.Println("Server exiting")
-		// Break connection to db with a timeout of 5 seconds here
+		// Break connection to db with gracefull timeout timeout here
+		mongoDisconnect()
 	}
 }

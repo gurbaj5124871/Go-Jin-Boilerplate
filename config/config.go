@@ -11,6 +11,10 @@ import (
 type Configuration struct {
 	Port          int
 	GraceShutDown int `json:"serverShutDownGraceDelayInSec"`
+	Mongo         struct {
+		URI string `json:"URI"`
+		DB  string `json:"database"`
+	}
 }
 
 // Config Struct has config variables
